@@ -1,4 +1,5 @@
 import area from './area'
+import './style.css'
 
 console.log('asdasd')
 console.log('asdasd')
