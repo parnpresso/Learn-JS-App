@@ -47,6 +47,11 @@ class App extends Component {
   }
 
   addItem = (item) => {
+    const itemsRef = firebase.database().ref('items')
+    itemsRef.push({
+      text: item
+    })
+
     let newState = this.state.items
     newState.push(item)
 
