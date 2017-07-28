@@ -40,6 +40,47 @@ const TodoList = ({ items }) => (
   </ul>
 )
 
+const AvItem = ({title, video}) => (
+  <li>
+    {title}
+    <video src={video} />
+  </li>
+)
+
+class AvList extends Component {
+
+  state = {
+    videos: []
+  }
+
+  componentDidMount(){
+    fetch('https://api.avgle.com/v1/videos/5?limit=5')
+      .then( (response) => response.json())
+      .then( (responseJson) => {
+        console.log(responseJson)
+        const videos = responseJson.response.videos
+        const newVideos = videos.map(
+          v => ({
+            title: v.title, 
+            url: v.preview_video_url
+          })
+        )
+        this.setState({
+          videos: newVideos
+        })
+      })
+  }
+
+  render() {
+    return (
+        <ul>
+          {this.state.videos.map( (video,i) => <AvItem key={i} title={video.title} video={video.url}/>)}
+        </ul>
+    ) 
+  }
+
+}
+
 class App extends Component {
 
   state = {
@@ -82,6 +123,7 @@ class App extends Component {
         <h1>Todo</h1>
         <NewItem addItem={this.addItem}/>
         <TodoList items={this.state.items}/>
+        <AvList />
       </div>
     );
   }
