@@ -12,11 +12,18 @@ class NewItem extends Component {
     })
   }
 
+  onClickAdd = () => {
+    this.props.addItem(this.state.text)
+    this.setState({
+      text: ''
+    })
+  }
+
   render() {
     return (
       <div>
         <input type="text" onChange={this.onChangeValue} value={this.state.text}/>
-        <button>Add</button>
+        <button onClick={this.onClickAdd}>Add</button>
       </div>
     )
   }
