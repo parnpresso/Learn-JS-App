@@ -40,6 +40,7 @@ class App extends Component {
     //this.onClickCount = this.onClickCount.bind(this)
   }
 
+  // Have to bind 
   onClickCount() {
     // Not recommend
     //this.state.count = this.state.count + 1
@@ -50,10 +51,18 @@ class App extends Component {
     })
   }
 
+  // Don't have to bind
   onClickCountArrow = () => {
     this.setState({
       count: this.state.count + 1
     })
+  }
+
+  //[????] Async, need to use previous state
+  onClickMinusArrow = () => {
+    this.setState(prevState => ({
+      count: prevState.count - 1
+    }))
   }
 
   render() {
@@ -66,6 +75,7 @@ class App extends Component {
         <h1>{name} - {this.state.count}</h1>
         <button onClick={this.onClickCount.bind(this)}>Count</button>
         <button onClick={this.onClickCountArrow}>Count</button>
+        <button onClick={this.onClickMinusArrow}>Minus</button>
       </div>
     )
   }
