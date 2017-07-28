@@ -1,11 +1,26 @@
 import React, { Component } from 'react'
 
-const NewItem = () => (
-  <div>
-    <input type="text" />
-    <button>Add</button>
-  </div>
-)
+class NewItem extends Component {
+
+  state = {
+    text: ''
+  }
+
+  onChangeValue = (e) => {
+    this.setState({
+      text: e.target.value
+    })
+  }
+
+  render() {
+    return (
+      <div>
+        <input type="text" onChange={this.onChangeValue} value={this.state.text}/>
+        <button>Add</button>
+      </div>
+    )
+  }
+}
 
 const TodoItem = ({text}) => (
   <li>{text}</li>
@@ -27,11 +42,20 @@ class App extends Component {
     ]
   }
 
+  addItem = (item) => {
+    let newState = this.state.items
+    newState.push(item)
+
+    this.setState({
+      items: newState
+    })
+  }
+
   render() {
     return (
       <div>
         <h1>Todo</h1>
-        <NewItem />
+        <NewItem addItem={this.addItem}/>
         <TodoList items={this.state.items}/>
       </div>
     );
