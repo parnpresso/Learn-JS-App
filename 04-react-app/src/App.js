@@ -31,13 +31,17 @@ const App3 = (props) => {
 // For stateful
 // class App extends React.Component is fine too
 class App extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      count: 0
-    }
-    // can have this line or bind in caller function
-    //this.onClickCount = this.onClickCount.bind(this)
+  // constructor(props) {
+  //   super(props)
+  //   this.state = {
+  //     count: 0
+  //   }
+  //   // can have this line or bind in caller function
+  //   //this.onClickCount = this.onClickCount.bind(this)
+  // }
+
+  state = {
+    count: 0
   }
 
   // Have to bind 
