@@ -31,13 +31,42 @@ const App3 = (props) => {
 // For stateful
 // class App extends React.Component is fine too
 class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      count: 0
+    }
+    // can have this line or bind in caller function
+    //this.onClickCount = this.onClickCount.bind(this)
+  }
+
+  onClickCount() {
+    // Not recommend
+    //this.state.count = this.state.count + 1
+
+    // Recommend
+    this.setState({
+      count: this.state.count + 1
+    })
+  }
+
+  onClickCountArrow = () => {
+    this.setState({
+      count: this.state.count + 1
+    })
+  }
+
   render() {
     // return (
     //   <h1>Hello, stateful. {this.props.name}</h1>
     // )
     const {name, text} = this.props
     return (
-      <h1>{name}</h1>
+      <div>
+        <h1>{name} - {this.state.count}</h1>
+        <button onClick={this.onClickCount.bind(this)}>Count</button>
+        <button onClick={this.onClickCountArrow}>Count</button>
+      </div>
     )
   }
 }
