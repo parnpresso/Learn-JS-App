@@ -40,6 +40,7 @@ class App extends Component {
   //   //this.onClickCount = this.onClickCount.bind(this)
   // }
 
+  // New style of constructor
   state = {
     count: 0
   }
